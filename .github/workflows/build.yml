@@ -1,0 +1,26 @@
+name: build
+on:
+  #push:
+  #  branches: [ "master" ]
+  #pull_request:
+  #  branches: [ "master" ]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Setup
+        run: |
+          sudo apt update -y -qqq
+          sudo apt autoremove --purge -y needrestart || : 
+          sudo apt install -y bash wget
+          sudo ln -svf bash /bin/sh
+          sudo apt install -y -qqq gcc g++ cmake m4 pkg-config libc6-dev git curl openssl libssl-dev clang llvm python3-dev vim libsqlite3-dev
+          sudo apt install -y -qqq ca-certificates binutils coreutils util-linux findutils diffutils patch sed gawk grep file gzip bzip2 xz-utils tar
+          sudo rm -fr /tmp/*
+          sudo df -Th
+
+      - name: build
+        run: sudo /bin/bash build.sh
