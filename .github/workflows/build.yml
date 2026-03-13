@@ -17,7 +17,7 @@ jobs:
           sudo apt autoremove --purge -y needrestart || : 
           sudo apt install -y bash wget
           sudo ln -svf bash /bin/sh
-          sudo apt autoremove --purge -y --allow-remove-essential php lxd snap firefox firebird docker podman
+          sudo apt autoremove --purge -y --allow-remove-essential php lxd snap firefox docker podman
           sudo apt install -y -qqq gcc g++ cmake m4 pkg-config libc6-dev git curl openssl libssl-dev clang llvm python3-dev vim libsqlite3-dev libcap-dev
           sudo apt install -y -qqq ca-certificates binutils coreutils util-linux findutils diffutils patch sed gawk grep file gzip bzip2 xz-utils tar
           sudo wget https://raw.githubusercontent.com/icebluey/build-nginx/refs/heads/master/ub2204/.preinstall_ub2204 -O /tmp/install-xxxx.tmp.sh
