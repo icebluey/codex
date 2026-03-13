@@ -20,7 +20,7 @@ tar -xof rust-*.tar*
 sleep 1
 rm -f rust-*.tar*
 cd codex*
-sed 's/pub const DEFAULT_ORIGINATOR: &str = "codex_cli_rs"/pub const DEFAULT_ORIGINATOR: &str = "Codex Desktop"/g' -i codex-rs/core/src/default_client.rs
+sed 's/pub const DEFAULT_ORIGINATOR: \&str = "codex_cli_rs"/pub const DEFAULT_ORIGINATOR: \&str = "Codex Desktop"/g' -i codex-rs/core/src/default_client.rs
 cat codex-rs/core/src/default_client.rs | grep -i 'pub const DEFAULT_ORIGINATOR: &str ='
 cd codex-rs
 cargo check
