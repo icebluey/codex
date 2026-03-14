@@ -23,6 +23,7 @@ jobs:
           sudo wget https://raw.githubusercontent.com/icebluey/build-nginx/refs/heads/master/ub2204/.preinstall_ub2204 -O /tmp/install-xxxx.tmp.sh
           sudo bash /tmp/install-xxxx.tmp.sh
           sudo rm -fr /tmp/*
+          sudo systemctl start docker
           sudo df -Th
 
       - name: build
