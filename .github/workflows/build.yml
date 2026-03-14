@@ -26,7 +26,7 @@ jobs:
           sudo df -Th
 
       - name: build
-        run: sudo /bin/bash build.sh
+        run: sudo /bin/bash run-build-al9.sh
 
       - name: Upload files
         uses: softprops/action-gh-release@v2
