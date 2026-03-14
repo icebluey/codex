@@ -99,7 +99,10 @@ cd codex*
 sed 's/pub const DEFAULT_ORIGINATOR: \&str = "codex_cli_rs"/pub const DEFAULT_ORIGINATOR: \&str = "Codex Desktop"/g' -i codex-rs/core/src/default_client.rs
 cat codex-rs/core/src/default_client.rs | grep -i 'pub const DEFAULT_ORIGINATOR: &str ='
 cd codex-rs
-cargo check
+#cargo check
+CARGO_PROFILE_RELEASE_DEBUG=0 \
+CARGO_PROFILE_RELEASE_STRIP=symbols \
+RUSTFLAGS="--remap-path-prefix=$(pwd)=/src --remap-path-prefix=src/=src/" \
 cargo build --release -p codex-cli --bin codex
 ls -la
 ls -lah target/release
@@ -108,7 +111,8 @@ rm -fr /tmp/codex
 /bin/cp -vf target/release/codex /tmp/
 sleep 1
 chmod 0755 /tmp/codex
-file /tmp/codex | sed -n -E 's/^(.*):[[:space:]]*ELF.*, not stripped.*/\1/p' | xargs --no-run-if-empty -I '{}' strip '{}'
+#file /tmp/codex | sed -n -E 's/^(.*):[[:space:]]*ELF.*, not stripped.*/\1/p' | xargs --no-run-if-empty -I '{}' strip '{}'
+file /tmp/codex
 echo ' done'
 cd /tmp
 rm -fr "${_tmp_dir}"
