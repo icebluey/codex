@@ -26,6 +26,8 @@ cd codex-rs
 cargo check
 cargo build --release -p codex-cli --bin codex
 ls -la
+ls -lah target/release
+ls -lah target/release/build
 echo ' done'
 exit
 
