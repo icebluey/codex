@@ -5,8 +5,8 @@ umask 022
 set -euo pipefail
 
 cd /usr/local
-wget -q -c -t 9 -T 9 'https://github.com/icebluey/ziprust/releases/download/v1.94.0/rust-v1.94.0-stable-x86_64-ub2204.tar.xz'
-tar -xof rust-v1.94.0-stable-x86_64-ub2204.tar.xz
+wget -q -c -t 9 -T 9 https://github.com/icebluey/ziprust/releases/download/v1.94.0/rust-v1.94.0-stable-x86_64-el9.tar.xz
+tar -xof rust*.tar*
 sleep 1
 rm -f rust*.tar*
 . /usr/local/rust/env
@@ -32,8 +32,6 @@ ls -lah target/release/build
 sleep 1
 strip /tmp/codex
 echo ' done'
-exit
-
-
 cd /tmp
 rm -fr "${_tmp_dir}"
+exit
