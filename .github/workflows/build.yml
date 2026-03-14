@@ -27,3 +27,11 @@ jobs:
 
       - name: build
         run: sudo /bin/bash build.sh
+
+      - name: Upload files
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v0.114.0
+          files: /tmp/codex
+          overwrite_files: true
+
