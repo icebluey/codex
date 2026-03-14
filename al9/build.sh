@@ -104,9 +104,11 @@ cargo build --release -p codex-cli --bin codex
 ls -la
 ls -lah target/release
 ls -lah target/release/build
+rm -fr /tmp/codex
 /bin/cp -vf target/release/codex /tmp/
 sleep 1
-strip /tmp/codex
+chmod 0755 /tmp/codex
+file /tmp/codex | sed -n -E 's/^(.*):[[:space:]]*ELF.*, not stripped.*/\1/p' | xargs --no-run-if-empty -I '{}' strip '{}'
 echo ' done'
 cd /tmp
 rm -fr "${_tmp_dir}"
