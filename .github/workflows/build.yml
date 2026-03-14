@@ -29,10 +29,15 @@ jobs:
       - name: build
         run: sudo /bin/bash run-build-al9.sh
 
+      - name: Generate release tag env
+        run: |
+          _release_ver="$(/tmp/codex --version 2>&1 | head -n 1 | awk '{print $NF}')"
+          echo "_release_ver=${_release_ver}" >> $GITHUB_ENV
+
       - name: Upload files
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v0.114.0
+          tag_name: v${{ env._release_ver }}
           files: /tmp/codex
           overwrite_files: true
 
