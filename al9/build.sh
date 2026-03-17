@@ -91,11 +91,16 @@ cargo --version && rustc --version
 _tmp_dir="$(mktemp -d)"
 cd "${_tmp_dir}"
 
-wget -q -c -t 9 -T 9 https://github.com/openai/codex/archive/refs/tags/rust-v0.114.0.tar.gz
-tar -xof rust-*.tar*
-sleep 1
-rm -f rust-*.tar*
-cd codex*
+#wget -q -c -t 9 -T 9 https://github.com/openai/codex/archive/refs/tags/rust-v0.114.0.tar.gz
+#tar -xof rust-*.tar*
+#sleep 1
+#rm -f rust-*.tar*
+#cd codex*
+
+git clone https://github.com/openai/codex.git
+cd codex
+git checkout "$(git tag | grep -iEv 'alpha|beta|rc|v0\.0|v\.0\.0' | sort -V | tail -n 1)"
+
 sed 's/pub const DEFAULT_ORIGINATOR: \&str = "codex_cli_rs"/pub const DEFAULT_ORIGINATOR: \&str = "Codex Desktop"/g' -i codex-rs/core/src/default_client.rs
 cat codex-rs/core/src/default_client.rs | grep -i 'pub const DEFAULT_ORIGINATOR: &str ='
 cd codex-rs
