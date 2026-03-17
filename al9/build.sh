@@ -88,8 +88,12 @@ rm -f rust*.tar*
 . /usr/local/rust/env
 cargo --version && rustc --version
 
-_tmp_dir="$(mktemp -d)"
-cd "${_tmp_dir}"
+#_tmp_dir="$(mktemp -d)"
+#cd "${_tmp_dir}"
+
+rm -fr /build
+mkdir -p /build/src
+cd /build/src
 
 #wget -q -c -t 9 -T 9 https://github.com/openai/codex/archive/refs/tags/rust-v0.114.0.tar.gz
 #tar -xof rust-*.tar*
@@ -120,5 +124,6 @@ chmod 0755 /tmp/codex
 file /tmp/codex
 echo ' done'
 cd /tmp
-rm -fr "${_tmp_dir}"
+#rm -fr "${_tmp_dir}"
+rm -fr /build
 exit
