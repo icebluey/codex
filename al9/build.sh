@@ -91,9 +91,9 @@ cargo --version && rustc --version
 #_tmp_dir="$(mktemp -d)"
 #cd "${_tmp_dir}"
 
-rm -fr /build
-mkdir -p /build/src
-cd /build/src
+rm -fr /src
+mkdir /src
+cd /src
 
 #wget -q -c -t 9 -T 9 https://github.com/openai/codex/archive/refs/tags/rust-v0.114.0.tar.gz
 #tar -xof rust-*.tar*
@@ -125,5 +125,5 @@ file /tmp/codex
 echo ' done'
 cd /tmp
 #rm -fr "${_tmp_dir}"
-rm -fr /build
+rm -fr /src
 exit
