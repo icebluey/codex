@@ -103,7 +103,8 @@ cd /src
 
 git clone https://github.com/openai/codex.git
 cd codex
-git checkout "$(git tag | grep -iEv 'alpha|beta|rc|v0\.0|v\.0\.0' | sort -V | tail -n 1)"
+_codex_ver="$(git tag | grep -iEv 'alpha|beta|rc|v0\.0|v\.0\.0' | sort -V | tail -n 1)"
+git checkout ${_codex_ver}
 
 sed 's/pub const DEFAULT_ORIGINATOR: \&str = "codex_cli_rs"/pub const DEFAULT_ORIGINATOR: \&str = "Codex Desktop"/g' -i codex-rs/core/src/default_client.rs
 cat codex-rs/core/src/default_client.rs | grep -i 'pub const DEFAULT_ORIGINATOR: &str ='
