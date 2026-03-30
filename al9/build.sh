@@ -79,9 +79,8 @@ yum install -y dracut ; yum update -y dracut
 /sbin/ldconfig >/dev/null 2>&1
 ################################################
 
-
 cd /usr/local
-wget -q -c -t 9 -T 9 https://github.com/icebluey/ziprust/releases/download/v1.94.0/rust-v1.94.0-stable-x86_64-el9.tar.xz
+wget -q -c -t 9 -T 9 https://github.com/icebluey/ziprust/releases/download/v1.94.1/rust-v1.94.1-stable-x86_64-el9.tar.xz
 tar -xof rust*.tar*
 sleep 1
 rm -f rust*.tar*
@@ -107,8 +106,8 @@ _codex_ver="$(git tag | grep -iEv 'alpha|beta|rc|v0\.0|v\.0\.0' | sort -V | tail
 echo "codex version: ${_codex_ver}"
 git checkout ${_codex_ver}
 
-sed 's/pub const DEFAULT_ORIGINATOR: \&str = "codex_cli_rs"/pub const DEFAULT_ORIGINATOR: \&str = "Codex Desktop"/g' -i codex-rs/core/src/default_client.rs
-cat codex-rs/core/src/default_client.rs | grep -i 'pub const DEFAULT_ORIGINATOR: &str ='
+sed 's/pub const DEFAULT_ORIGINATOR: \&str = "codex_cli_rs"/pub const DEFAULT_ORIGINATOR: \&str = "Codex Desktop"/g' -i codex-rs/login/src/auth/default_client.rs
+cat codex-rs/login/src/auth/default_client.rs | grep -i 'pub const DEFAULT_ORIGINATOR: &str ='
 cd codex-rs
 #cargo check
 CARGO_PROFILE_RELEASE_DEBUG=0 \
